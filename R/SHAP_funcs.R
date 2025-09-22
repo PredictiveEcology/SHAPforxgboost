@@ -38,7 +38,8 @@
 shap.values <- function(xgb_model,
                         X_train){
 
-  if(class(xgb_model)[1] == "lgb.Booster" & packageVersion("lightgbm") >= '4.0'){
+  if((class(xgb_model)[1] == "lgb.Booster" || is(xgb_model, "xgboost")) &&
+     packageVersion("lightgbm") >= '4.0'){
     shap_contrib <- predict(xgb_model,
                           (X_train),
                           type = 'contrib')
